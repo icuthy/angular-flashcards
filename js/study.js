@@ -1,10 +1,9 @@
-var studyModule = angular.module("flash.study", []);
+var studyModule = angular.module("flash.study",["ngRoute"]);
 
-
-studyModule.controller('StudyController',function ($scope) {
+studyModule.controller('StudyController',['$scope', '$routeParams', function ($scope, $routeParams) {
 
   function init() {
-    $scope.cards = $scope.$parent.refreshStudyDeck();
+    $scope.cards = $scope.$parent.refreshStudyDeck($routeParams.index);
     $scope.current = 0;
     $scope.front = true;
   }
@@ -35,4 +34,4 @@ studyModule.controller('StudyController',function ($scope) {
     $scope.current = ($scope.current % $scope.cards.length) || 0;
   };
 
-});
+}]);
